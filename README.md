@@ -8,7 +8,7 @@
 
 ## What is This?
 
-An **Agent Skill** for AI coding assistants that provides expert knowledge and tooling for developing Adobe Express add-ons. Works with **Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev**, and any MCP-compatible IDE.
+An **Agent Skill** for AI coding assistants that provides expert knowledge and tooling for developing Adobe Express add-ons. Works with **Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev, Google Antigravity**, and any MCP-compatible IDE.
 
 When you're working on Adobe Express projects, this skill automatically activates to help you with:
 
@@ -50,6 +50,16 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
 **For Claude Desktop:**
 ```bash
 cd ~/Library/Application\ Support/Claude/skills/  # macOS
+git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
+```
+
+**For Google Antigravity:**
+```bash
+cd ~/.gemini/antigravity/global_skills/  # Global (all workspaces)
+git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
+
+# OR for workspace-specific:
+cd <your-workspace>/.agent/skills/
 git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
 ```
 
@@ -160,7 +170,7 @@ Your AI assistant automatically uses this skill when you:
 - Use Spectrum Web Components
 - Ask about Adobe Express APIs or development patterns
 
-**Compatible with:** Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev, and any MCP-compatible IDE.
+**Compatible with:** Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev, Google Antigravity, and any MCP-compatible IDE.
 
 ## Prerequisites
 
@@ -170,6 +180,7 @@ Your AI assistant automatically uses this skill when you:
   - Windsurf (Codeium)
   - Claude Code (Anthropic)
   - Continue.dev (open source)
+  - Google Antigravity (Google)
   - Any MCP-compatible IDE
 - **Adobe Express MCP Server** configured in your IDE
 - **Node.js 18+** for local add-on development
@@ -186,7 +197,7 @@ Your AI assistant automatically uses this skill when you:
    - Links to official resources
 4. **You get accurate, actionable guidance** without leaving your IDE
 
-**Works seamlessly with:** Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev, and all MCP-compatible AI coding assistants.
+**Works seamlessly with:** Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev, Google Antigravity, and all MCP-compatible AI coding assistants.
 
 ## What This Skill Does NOT Do
 
@@ -264,7 +275,7 @@ Created for the Adobe Express developer community.
 - Adobe Express team for the excellent documentation and MCP server
 - Adobe Express add-on samples repository contributors
 - Anthropic for creating the Agent Skills specification
-- Agent Skills community (Cursor, GitHub Copilot, Windsurf, Claude, Continue.dev users)
+- Agent Skills community (Cursor, GitHub Copilot, Windsurf, Claude, Continue.dev, Google Antigravity users)
 
 ---
 

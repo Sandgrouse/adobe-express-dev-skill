@@ -11,6 +11,7 @@ This skill follows the **Agent Skills specification** and works with multiple AI
 | **Windsurf** | ✅ Fully Compatible | `~/.windsurf/skills/` | Codeium-based |
 | **Claude Code** | ✅ Fully Compatible | `~/Library/Application Support/Claude/skills/` | Anthropic native |
 | **Continue.dev** | ✅ Fully Compatible | `~/.continue/skills/` | Open source |
+| **Google Antigravity** | ✅ Fully Compatible | `~/.gemini/antigravity/global_skills/` (global)<br>`<workspace>/.agent/skills/` (workspace) | Google browser IDE |
 
 ## Installation by IDE
 
@@ -116,6 +117,42 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
   }
 }
 ```
+
+### Google Antigravity
+
+Google's browser-based IDE supports two skill installation modes:
+
+**Global Installation** (available in all workspaces):
+```bash
+mkdir -p ~/.gemini/antigravity/global_skills
+cd ~/.gemini/antigravity/global_skills
+git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
+```
+
+**Workspace-Specific Installation**:
+```bash
+cd <your-workspace-root>
+mkdir -p .agent/skills
+cd .agent/skills
+git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
+```
+
+**MCP Configuration**:
+
+Antigravity supports MCP servers. Add to your Antigravity configuration:
+
+```json
+{
+  "mcpServers": {
+    "adobe-express": {
+      "command": "npx",
+      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+    }
+  }
+}
+```
+
+**Note**: Antigravity uses the same Agent Skills specification. Skills are auto-discovered from both global and workspace-specific paths.
 
 ## How to Verify Installation
 
