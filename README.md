@@ -1,14 +1,16 @@
-# Adobe Express Development Skill for GitHub Copilot
+# Adobe Express Development Skill for AI Coding Assistants
 
 **Expert guidance for Adobe Express add-on development** with MCP server integration, OAuth patterns, and comprehensive code samples catalog.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Copilot](https://img.shields.io/badge/GitHub-Copilot-blue)](https://github.com/features/copilot)
+[![Agent Skills](https://img.shields.io/badge/Agent-Skills-purple)](https://agentskills.io)
 [![Adobe Express](https://img.shields.io/badge/Adobe-Express-FF0000)](https://developer.adobe.com/express/add-ons/)
 
 ## What is This?
 
-A **GitHub Copilot Agent Skill** that provides expert knowledge and tooling for developing Adobe Express add-ons. When you're working on Adobe Express projects, this skill automatically activates to help you with:
+An **Agent Skill** for AI coding assistants that provides expert knowledge and tooling for developing Adobe Express add-ons. Works with **Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev**, and any MCP-compatible IDE.
+
+When you're working on Adobe Express projects, this skill automatically activates to help you with:
 
 - 📚 Accessing latest Adobe Express API documentation via MCP server
 - 🔐 Implementing OAuth 2.0 authentication (PKCE flow)
@@ -31,16 +33,30 @@ A **GitHub Copilot Agent Skill** that provides expert knowledge and tooling for 
 
 ## Installation
 
-### 1. Clone this repository
+### 1. Clone this repository to your skills directory
 
+**For Cursor / Windsurf / Continue.dev:**
+```bash
+cd ~/.continue/skills/  # or ~/.windsurf/skills/ or ~/.cursor/skills/
+git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
+```
+
+**For GitHub Copilot (VS Code):**
 ```bash
 cd ~/.copilot/skills/
 git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
 ```
 
+**For Claude Desktop:**
+```bash
+cd ~/Library/Application\ Support/Claude/skills/  # macOS
+git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
+```
+
 ### 2. Configure Adobe Express MCP Server
 
-Add to your `.vscode/mcp.json` or IDE MCP configuration:
+**For VS Code / Cursor / Windsurf:**  
+Add to `.vscode/mcp.json` or your IDE's MCP settings:
 
 ```json
 {
@@ -56,7 +72,21 @@ Add to your `.vscode/mcp.json` or IDE MCP configuration:
 }
 ```
 
-### 3. Restart GitHub Copilot
+**For Claude Desktop:**  
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "adobe-express": {
+      "command": "npx",
+      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+    }
+  }
+}
+```
+
+### 3. Restart your AI coding assistant
 
 The skill will automatically activate when you work on Adobe Express add-on projects.
 
@@ -123,16 +153,24 @@ adobe-express-dev/
 
 ## When This Skill Activates
 
-GitHub Copilot automatically uses this skill when you:
+Your AI assistant automatically uses this skill when you:
 - Mention "Adobe Express", "add-on", "express-document-sdk"
 - Work with document sandbox or iframe runtime
 - Implement OAuth authentication
 - Use Spectrum Web Components
 - Ask about Adobe Express APIs or development patterns
 
+**Compatible with:** Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev, and any MCP-compatible IDE.
+
 ## Prerequisites
 
-- **GitHub Copilot** subscription (Individual, Business, or Enterprise)
+- **AI Coding Assistant** - One of:
+  - Cursor (recommended - free)
+  - GitHub Copilot (VS Code, JetBrains)
+  - Windsurf (Codeium)
+  - Claude Code (Anthropic)
+  - Continue.dev (open source)
+  - Any MCP-compatible IDE
 - **Adobe Express MCP Server** configured in your IDE
 - **Node.js 18+** for local add-on development
 - **Adobe Express account** for testing add-ons
@@ -147,6 +185,8 @@ GitHub Copilot automatically uses this skill when you:
    - Code examples and patterns
    - Links to official resources
 4. **You get accurate, actionable guidance** without leaving your IDE
+
+**Works seamlessly with:** Cursor, GitHub Copilot, Windsurf, Claude Code, Continue.dev, and all MCP-compatible AI coding assistants.
 
 ## What This Skill Does NOT Do
 
@@ -223,7 +263,8 @@ Created for the Adobe Express developer community.
 
 - Adobe Express team for the excellent documentation and MCP server
 - Adobe Express add-on samples repository contributors
-- GitHub Copilot Agent Skills community
+- Anthropic for creating the Agent Skills specification
+- Agent Skills community (Cursor, GitHub Copilot, Windsurf, Claude, Continue.dev users)
 
 ---
 
