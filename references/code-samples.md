@@ -25,7 +25,7 @@ npm run start
 # Load in Adobe Express via Add-on Development Mode
 ```
 
-**Prerequisite**: Run `npx @adobe/create-express-add-on` at least once to initialize the add-on package.
+**Prerequisite**: Run `npx @adobe/create-ccweb-add-on` at least once to initialize the add-on package.
 
 ---
 
@@ -50,6 +50,11 @@ npm run start
 
 **Use When**: Learning add-on basics without SDK complexity.
 
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Enter a name and confirm the greeting updates in the panel UI.
+
 ---
 
 ### 2. import-images-from-local
@@ -69,6 +74,11 @@ npm run start
 - Local file handling
 
 **Use When**: Implementing basic image import functionality.
+
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Click an image to insert it, and drag an image into the document to confirm drag-and-drop works.
 
 ---
 
@@ -98,6 +108,11 @@ npm run start
 
 **Use When**: Implementing OAuth, cloud storage, or user authentication.
 
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Authenticate with Dropbox, browse images, and click/drag one into the document.
+
 **GitHub**: [View Source](https://github.com/AdobeDocs/express-add-on-samples/tree/main/samples/import-images-using-oauth)
 
 ---
@@ -121,6 +136,11 @@ npm run start
 
 **Use When**: Need to save user data, preferences, or app state.
 
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Add a todo item, reload the add-on, and confirm the item persists.
+
 ---
 
 ### 5. export-sample
@@ -141,6 +161,11 @@ npm run start
 - Multiple export formats
 
 **Use When**: Implementing export/download functionality.
+
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Trigger export and confirm renditions are generated in the supported formats (JPEG, PNG, PDF, MP4).
 
 ---
 
@@ -163,6 +188,11 @@ npm run start
 
 **Use When**: Need confirmation dialogs, forms, or additional UI panels.
 
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Open each dialog variation and confirm modal behavior works as expected.
+
 ---
 
 ### 7. licensed-addon
@@ -184,6 +214,11 @@ npm run start
 
 **Use When**: Building paid or freemium add-ons.
 
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Trigger the licensing flow and confirm the modal appears using Current User data.
+
 ---
 
 ### 8. audio-recording-addon
@@ -204,6 +239,11 @@ npm run start
 **Use When**: Implementing audio recording or audio file handling.
 
 **Important**: Audio `title` parameter is **MANDATORY**.
+
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Record audio and confirm it gets added to the current document page.
 
 ---
 
@@ -228,6 +268,11 @@ npm run start
 
 **Use When**: Building canvas-based tools or image editors.
 
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Draw pixel art, drag it into the document, and try importing the current page as pixel art.
+
 ---
 
 ### 10. swc
@@ -251,6 +296,11 @@ npm run start
 
 **Use When**: Want Spectrum UI without React overhead.
 
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Change the app theme and confirm the UI updates accordingly.
+
 ---
 
 ### 11. swc-react-theme-sampler
@@ -271,6 +321,11 @@ npm run start
 - Theme switching demo
 
 **Use When**: Using React with Spectrum components or implementing theme switching.
+
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Switch theme, scale, or color and confirm the UI updates.
 
 ---
 
@@ -295,6 +350,11 @@ npm run start
 
 **Use When**: Building add-ons with Vue.js framework.
 
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Confirm the UI waits for the SDK Ready state, then enables the UI actions.
+
 ---
 
 ### 13. Giphy (Marketplace)
@@ -314,6 +374,11 @@ npm run start
 - Third-party API integration (Giphy)
 
 **Use When**: Integrating external APIs or content services.
+
+**Quickstart & Verify**:
+1. Run the sample (clone → install → build → start).
+2. Load the add-on in Adobe Express via Add-on Development Mode.
+3. **Verify**: Search for a GIF and click/drag it into the document.
 
 ---
 
