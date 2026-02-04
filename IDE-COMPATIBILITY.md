@@ -31,7 +31,7 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
   "mcpServers": {
     "adobe-express": {
       "command": "npx",
-      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+      "args": ["-y", "@adobe/express-developer-mcp@latest"]
     }
   }
 }
@@ -51,7 +51,7 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
   "mcpServers": {
     "adobe-express": {
       "command": "npx",
-      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+      "args": ["-y", "@adobe/express-developer-mcp@latest"]
     }
   }
 }
@@ -71,7 +71,7 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
   "mcpServers": {
     "adobe-express": {
       "command": "npx",
-      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+      "args": ["-y", "@adobe/express-developer-mcp@latest"]
     }
   }
 }
@@ -92,7 +92,7 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
   "mcpServers": {
     "adobe-express": {
       "command": "npx",
-      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+      "args": ["-y", "@adobe/express-developer-mcp@latest"]
     }
   }
 }
@@ -112,7 +112,7 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
   "mcpServers": {
     "adobe-express": {
       "command": "npx",
-      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+      "args": ["-y", "@adobe/express-developer-mcp@latest"]
     }
   }
 }
@@ -146,7 +146,7 @@ Antigravity supports MCP servers. Add to your Antigravity configuration:
   "mcpServers": {
     "adobe-express": {
       "command": "npx",
-      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+      "args": ["-y", "@adobe/express-developer-mcp@latest"]
     }
   }
 }
@@ -190,7 +190,7 @@ After installing, test the skill:
 **Issue**: MCP server not connecting  
 **Solution**:
 1. Check Node.js is installed: `node --version` (need 18+)
-2. Test MCP server manually: `npx -y @adobe/aem-mcp-server-adobe-express`
+2. Test MCP server manually: `npx -y @adobe/express-developer-mcp@latest`
 3. Verify Windsurf has permission to execute npx
 
 ### Claude Code
@@ -236,7 +236,7 @@ To verify the Adobe Express MCP server works:
 
 ```bash
 # Install and test
-npx -y @adobe/aem-mcp-server-adobe-express
+npx -y @adobe/express-developer-mcp@latest
 
 # Should start server and show available tools
 ```

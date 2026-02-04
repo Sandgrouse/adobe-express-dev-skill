@@ -75,7 +75,7 @@ Add to `.vscode/mcp.json` or your IDE's MCP settings:
       "command": "npx",
       "args": [
         "-y",
-        "@adobe/aem-mcp-server-adobe-express"
+        "@adobe/express-developer-mcp@latest"
       ]
     }
   }
@@ -90,7 +90,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
   "mcpServers": {
     "adobe-express": {
       "command": "npx",
-      "args": ["-y", "@adobe/aem-mcp-server-adobe-express"]
+      "args": ["-y", "@adobe/express-developer-mcp@latest"]
     }
   }
 }
@@ -259,7 +259,7 @@ Please ensure:
 - **Official Samples**: https://github.com/AdobeDocs/express-add-on-samples
 - **OAuthUtils.js**: https://github.com/AdobeDocs/express-add-on-samples/blob/main/samples/import-images-using-oauth/src/utils/OAuthUtils.js
 - **Spectrum Web Components**: https://opensource.adobe.com/spectrum-web-components/
-- **Adobe Express MCP Server**: https://www.npmjs.com/package/@adobe/aem-mcp-server-adobe-express
+- **Adobe Express MCP Server**: https://www.npmjs.com/package/@adobe/express-developer-mcp@latest
 
 ## License
 
