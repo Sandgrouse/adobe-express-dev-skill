@@ -32,10 +32,16 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
     "adobe-express": {
       "command": "npx",
       "args": ["-y", "@adobe/express-developer-mcp@latest"]
+    },
+    "adobe-express-community": {
+      "command": "npx",
+      "args": ["-y", "community-express-dev-mcp"]
     }
   }
 }
 ```
+
+**Community server recommended for Spectrum Web Components documentation access.**
 
 ### GitHub Copilot (VS Code)
 
@@ -52,10 +58,16 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
     "adobe-express": {
       "command": "npx",
       "args": ["-y", "@adobe/express-developer-mcp@latest"]
+    },
+    "adobe-express-community": {
+      "command": "npx",
+      "args": ["-y", "community-express-dev-mcp"]
     }
   }
 }
 ```
+
+**Community server recommended for Spectrum Web Components documentation access.**
 
 ### Windsurf (Codeium)
 
@@ -72,10 +84,16 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
     "adobe-express": {
       "command": "npx",
       "args": ["-y", "@adobe/express-developer-mcp@latest"]
+    },
+    "adobe-express-community": {
+      "command": "npx",
+      "args": ["-y", "community-express-dev-mcp"]
     }
   }
 }
 ```
+
+**Community server recommended for Spectrum Web Components documentation access.**
 
 ### Claude Code (Anthropic)
 
@@ -93,10 +111,16 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
     "adobe-express": {
       "command": "npx",
       "args": ["-y", "@adobe/express-developer-mcp@latest"]
+    },
+    "adobe-express-community": {
+      "command": "npx",
+      "args": ["-y", "community-express-dev-mcp"]
     }
   }
 }
 ```
+
+**Community server recommended for Spectrum Web Components documentation access.**
 
 ### Continue.dev
 
@@ -113,10 +137,16 @@ git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-exp
     "adobe-express": {
       "command": "npx",
       "args": ["-y", "@adobe/express-developer-mcp@latest"]
+    },
+    "adobe-express-community": {
+      "command": "npx",
+      "args": ["-y", "community-express-dev-mcp"]
     }
   }
 }
 ```
+
+**Community server recommended for Spectrum Web Components documentation access.**
 
 ### Google Antigravity
 
@@ -147,10 +177,16 @@ Antigravity supports MCP servers. Add to your Antigravity configuration:
     "adobe-express": {
       "command": "npx",
       "args": ["-y", "@adobe/express-developer-mcp@latest"]
+    },
+    "adobe-express-community": {
+      "command": "npx",
+      "args": ["-y", "community-express-dev-mcp"]
     }
   }
 }
 ```
+
+**Community server recommended for Spectrum Web Components documentation access.**
 
 **Note**: Antigravity uses the same Agent Skills specification. Skills are auto-discovered from both global and workspace-specific paths.
 

@@ -4,6 +4,20 @@ Complete list of official Adobe Express add-on code samples with descriptions an
 
 **Repository**: [express-add-on-samples](https://github.com/AdobeDocs/express-add-on-samples)
 
+## UI Building with Spectrum Web Components
+
+For all UI-building samples, the **community MCP server** provides live Spectrum Web Components documentation. Query it using:
+
+```
+Query: "sp-button documentation"
+Tool: mcp_adobeexpressd_queryDocumentation
+Target: spectrum_web_components
+```
+
+This gives you real-time component props, events, and examples while implementing samples.
+
+---
+
 ## How to Use Samples
 
 ```bash

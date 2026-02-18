@@ -63,7 +63,9 @@ cd <your-workspace>/.agent/skills/
 git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
 ```
 
-### 2. Configure Adobe Express MCP Server
+### 2. Configure Adobe Express MCP Servers (Official + Community)
+
+For best development experience, configure both MCP servers:
 
 **For VS Code / Cursor / Windsurf:**  
 Add to `.vscode/mcp.json` or your IDE's MCP settings:
@@ -76,6 +78,13 @@ Add to `.vscode/mcp.json` or your IDE's MCP settings:
       "args": [
         "-y",
         "@adobe/express-developer-mcp@latest"
+      ]
+    },
+    "adobe-express-community": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "community-express-dev-mcp"
       ]
     }
   }
@@ -91,10 +100,18 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
     "adobe-express": {
       "command": "npx",
       "args": ["-y", "@adobe/express-developer-mcp@latest"]
+    },
+    "adobe-express-community": {
+      "command": "npx",
+      "args": ["-y", "community-express-dev-mcp"]
     }
   }
 }
 ```
+
+**Why both servers?**
+- ✅ **Official Adobe Server**: Core SDK, APIs, document manipulation
+- ✅ **Community Server**: **Live Spectrum Web Components documentation** for UI building
 
 ### 3. Restart your AI coding assistant
 

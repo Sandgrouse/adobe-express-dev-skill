@@ -22,7 +22,9 @@ Use this skill when:
 
 ## Prerequisites
 
-- **Adobe Express MCP Server** must be configured in `.vscode/mcp.json` or IDE settings
+- **Dual MCP Server Setup** (recommended for full documentation access):
+  1. **Official Adobe Server** - `npm install -g @adobe/express-developer-mcp@latest` - Core SDK & API docs
+  2. **Community MCP Server** - `npm install -g community-express-dev-mcp` - **Live Spectrum Web Components UI docs**
 - **Node.js 18+** for local development
 - **Basic understanding** of HTML, CSS, and JavaScript
 - **Adobe Express account** for testing add-ons
@@ -72,18 +74,19 @@ import { editor, colorUtils, constants, fonts, viewport } from "express-document
 **When you need**: API references, type definitions, or documentation for Adobe Express add-on development.
 
 **Steps**:
-1. Use `mcp_adobe-express_get_relevant_documentations` tool with your query
-2. Review the returned documentation snippets
+1. **For Core SDK & API docs**: Use `mcp_adobe-express_get_relevant_documentations` tool with your query
+2. **For Spectrum Web Components UI documentation**: Use community MCP's `mcp_adobeexpressd_queryDocumentation` with `target_source: "spectrum_web_components"`
 3. For TypeScript definitions, use `mcp_adobe-express_get_typedefinitions` with appropriate `api_type`:
    - `express-document-sdk` - Document manipulation APIs
    - `add-on-sdk-document-sandbox` - Communication between runtimes
    - `iframe-ui` - UI SDK and iframe runtime APIs
 
 **Example queries**:
-- "How to create text in Adobe Express"
-- "Document sandbox communication APIs"
-- "Add-on manifest configuration"
-- "Spectrum Web Components usage in add-ons"
+- "How to create text in Adobe Express" (official server)
+- "Document sandbox communication APIs" (official server)
+- "Add-on manifest configuration" (official server)
+- "sp-button component documentation" (community server for Spectrum docs)
+- "How to style Spectrum Web Components" (community server)
 
 ### Workflow 2: Understand Project Structure
 
@@ -341,10 +344,20 @@ await sandboxApi.addTextToDocument("Hello World");
 
 ## MCP Server Tools Available
 
+### Official Adobe Express MCP Server
 | Tool | Purpose | Example Query |
 |------|---------|---------------|
-| `get_relevant_documentations` | Search Adobe Express docs | "How to create rectangles" |
+| `get_relevant_documentations` | Search Adobe Express SDK docs | "How to create rectangles" |
 | `get_typedefinitions` | Get TypeScript definitions | `api_type: "express-document-sdk"` |
+
+### Community MCP Server (Spectrum Web Components Documentation)
+| Tool | Purpose | Example Query |
+|------|---------|---------------|
+| `mcp_adobeexpressd_queryDocumentation` | Search **Spectrum Web Components** docs for UI building | `query_text: "sp-button"` with `target_source: "spectrum_web_components"` |
+| `mcp_adobeexpressd_get-code-example` | Get code examples for common features | `feature: "dialog-api"` |
+| `mcp_adobeexpressd_implement-feature` | Get implementation guidance | `feature: "authentication"` |
+
+**Recommended**: Use community MCP for all Spectrum Web Components queries—it provides live documentation access.
 
 ## Common File Paths
 
