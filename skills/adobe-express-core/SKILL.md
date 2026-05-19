@@ -50,39 +50,71 @@ If you prefer to configure your IDE manually, see [MCP Setup and Installation](r
 - **`skills/adobe-express-core/scripts/setup-mcp-servers.mjs`** — Automates MCP server configuration for all supported IDEs.
 - **`install-skills.mjs`** — Installs all skill folders (or selected skills) from the repository root into your host skill directory.
 
+## MCP Usage Guide (Primary Value of This Skill)
+
+Use MCP as your first source for Adobe Express facts, APIs, examples, and type definitions. Avoid duplicating long documentation in this skill.
+
+### When to Use MCP
+
+- Before implementing any Adobe Express feature
+- When you need current API behavior or schema details
+- When generating code for Document API, UI components, OAuth, or manifest entries
+- When debugging SDK usage, config, or add-on behavior
+
+### MCP Tools and When to Call Them
+
+- **`mcp_adobe-express_get_relevant_documentations`**: Use for official docs, guides, concepts, and implementation steps.
+- **`mcp_adobe-express_get_typedefinitions`**: Use for exact TypeScript API signatures.
+   - `express-document-sdk`: document operations
+   - `add-on-sdk-document-sandbox`: iframe/sandbox communication
+   - `iframe-ui`: panel-side UI/runtime APIs
+
+### How to Use MCP in Prompts
+
+Use explicit instructions so your agent calls MCP instead of guessing.
+
+- "Use `mcp_adobe-express_get_relevant_documentations` for Adobe Express guidance before coding."
+- "Use `mcp_adobe-express_get_typedefinitions` with `api_type=express-document-sdk`, then generate TypeScript code."
+- "Cite official Adobe documentation returned by MCP in the response."
+
+If your host supports tool tags, you can also call with hash-style hints:
+
+- `#mcp_adobe-express_get_relevant_documentations Find how to add text to the document`
+- `#mcp_adobe-express_get_typedefinitions api_type=iframe-ui`
+
+### Prompt Templates
+
+- **Feature build**: "Retrieve official docs for <feature> with MCP, retrieve type definitions, then implement in <framework>."
+- **Debugging**: "Use MCP docs and type definitions to diagnose this error: <error>. Propose the smallest safe fix."
+- **Manifest**: "Use MCP documentation to validate manifest entries for <capability>."
+
 ## Adobe Express Is Different from Web Development
 
-Add-ons run inside Adobe Express as isolated panels with restrictions:
+Adobe Express add-ons run in a controlled host environment, not a normal web page. This creates architectural rules that directly affect how you design and debug features.
 
-- **No direct DOM access to Express**: Your add-on cannot manipulate the main Express interface
-- **Two separate runtimes**: The UI (iframe) and document operations (sandbox) cannot directly call each other—they communicate via message passing
-- **Limited Web APIs in sandbox**: Security restriction—the document manipulation environment has minimal browser APIs available
-- **Manifest-driven architecture**: Every add-on requires a `manifest.json` file declaring permissions, entry points, and capabilities upfront
-- **Spectrum design system is mandatory**: All add-ons must follow Adobe's design language for consistency with the Express interface
+### Key Differences
 
-This is not traditional web development. It's a highly controlled, security-first environment.
+- **Split runtime model**: UI runs in an iframe runtime while document edits run in a sandbox runtime.
+- **Capability separation**: iframe is best for UI, OAuth, network access, and state; sandbox is best for Document API operations.
+- **No direct cross-runtime calls**: iframe and sandbox exchange messages through the SDK boundary.
+- **Host-controlled permissions**: capabilities are declared in `manifest.json` and enforced by Express.
+- **Security-first constraints**: sandbox intentionally has limited browser-style APIs.
 
-## Two-Runtime Architecture Explained
+### Practical Implications
 
-The iframe and sandbox separation is the core concept:
+- Put external API calls and auth in iframe, then pass structured data to sandbox for document updates.
+- Keep message contracts explicit (input shape, output shape, error shape) to avoid runtime mismatch.
+- Treat `manifest.json` as source of truth for enabled features and permissions.
+- When behavior is unclear, query MCP first for current API guidance before changing implementation.
 
-### Iframe Runtime (UI/Panel Layer)
+### Common Pitfalls
 
-- **What it can do**: Full Web APIs (fetch, localStorage, WebSockets), user interactions, OAuth flows, external API calls, Client Storage
-- **What it cannot do**: Manipulate the document, access document structure, create shapes/text/media
-- **Purpose**: All UI, authentication, user input, external integrations
+- Trying to mutate the document directly from iframe code.
+- Assuming sandbox has full browser APIs like a regular web app.
+- Debugging only one runtime while the issue is actually in cross-runtime messaging.
+- Implementing features before validating manifest and API support via MCP.
 
-### Document Sandbox (Document Manipulation Layer)
-
-- **What it can do**: Full Document API (create shapes, text, images, audio, video), access document tree, real-time rendering
-- **What it cannot do**: Use Web APIs (no fetch, no localStorage, no DOM), render UI, access iframe directly
-- **Purpose**: Document operations only
-
-### Communication Pattern
-
-The two runtimes communicate via Document Sandbox SDK using message passing. The iframe calls methods in the sandbox, and the sandbox calls methods back in the iframe. This message-based pattern ensures security and isolation.
-
-**For detailed examples and implementation patterns, see adobe-express-document-manipulation skill.**
+For runtime implementation details, query MCP first, then use adobe-express-document-manipulation skill.
 
 ## Project Setup Options
 
@@ -111,27 +143,6 @@ Community-built boilerplate with enhanced developer experience:
 
 See [Project Setup Guide](references/project-setup.md) for Bolt Express quick start and feature comparison.
 
-## Project Structure: Three Essential Layers
-
-Every add-on has these three components:
-
-1. **manifest.json** — Declares the add-on's metadata and permissions
-   - Specifies OAuth providers, sandbox capabilities, entry points
-   - Generated automatically by both official CLI and Bolt Express
-   - Ask MCP for current manifest schema and best practices
-
-2. **Frontend UI** — User interface in your chosen framework
-   - React, Vue, Svelte, or vanilla JavaScript
-   - Must use Spectrum Web Components for consistency
-   - Handles user interactions and state
-   - See adobe-express-spectrum-ui-ux skill for UI guidance
-
-3. **Backend Code (Sandbox)** — Document manipulation layer
-   - Runs in isolated sandbox with Document API access
-   - Communicates with UI via message passing
-   - Only needed if your add-on modifies the document
-   - See adobe-express-document-manipulation skill for operations
-
 ## Skill Routing Guide
 
 Once you understand the architecture, route specific tasks to specialized skills:
@@ -143,20 +154,6 @@ Once you understand the architecture, route specific tasks to specialized skills
 | OAuth login, token storage, cloud provider setup | adobe-express-oauth-authentication | Connecting to external services |
 | Subscriptions, checkout flows, entitlements | adobe-express-monetization | Monetizing features or billing |
 | Architecture decisions, manifest, MCP setup | adobe-express-core (this skill) | Planning overall add-on structure |
-
-## Common Architecture Questions
-
-**Q: Does my add-on need a document sandbox?**
-A: Only if it creates or modifies document content (shapes, text, media). UI-only add-ons use iframe only.
-
-**Q: Why can't the UI code call document methods directly?**
-A: Security and stability. The sandbox is isolated to prevent malicious or buggy UI code from corrupting the document.
-
-**Q: Where do I fetch data from APIs?**
-A: In the iframe (full Web API access). Pass data to the sandbox via message passing if needed for document operations.
-
-**Q: How do I store user preferences?**
-A: Use Client Storage in iframe: Ask your MCP for current `clientStorage` API details.
 
 ## References
 
