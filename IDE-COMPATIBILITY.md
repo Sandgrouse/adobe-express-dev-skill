@@ -1,262 +1,53 @@
 # IDE Compatibility Guide
 
-This skill follows the **Agent Skills specification** and works with multiple AI coding assistants.
+This repository uses a modular composite skill layout and supports common skill-capable hosts.
 
-## ✅ Confirmed Compatible IDEs
+## Supported Hosts
 
-| IDE | Status | Installation Path | Notes |
-|-----|--------|------------------|-------|
-| **Cursor** | ✅ Fully Compatible | `~/.cursor/skills/` or `~/.continue/skills/` | Most popular choice |
-| **GitHub Copilot** | ✅ Fully Compatible | `~/.copilot/skills/` | VS Code & JetBrains |
-| **Windsurf** | ✅ Fully Compatible | `~/.windsurf/skills/` | Codeium-based |
-| **Claude Code** | ✅ Fully Compatible | `~/Library/Application Support/Claude/skills/` | Anthropic native |
-| **Continue.dev** | ✅ Fully Compatible | `~/.continue/skills/` | Open source |
-| **Google Antigravity** | ✅ Fully Compatible | `~/.gemini/antigravity/global_skills/` (global)<br>`<workspace>/.agent/skills/` (workspace) | Google browser IDE |
+- GitHub Copilot (VS Code and compatible setups)
+- Cursor
+- Windsurf
+- Continue
+- Claude Desktop
+- Google Antigravity (global and workspace modes)
 
-## Installation by IDE
+## Recommended Install Path
 
-### Cursor
+Use the collection installer instead of manual copy:
 
-Cursor uses Continue.dev under the hood, so skills go in the Continue directory:
+- `npx @sandgrouse/adobe-express-skills@latest install`
 
-```bash
-mkdir -p ~/.continue/skills
-cd ~/.continue/skills
-git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
-```
+Optional routing:
 
-**MCP Configuration** (`~/Library/Application Support/Cursor/mcp.json` on macOS):
-```json
-{
-  "mcpServers": {
-    "adobe-express": {
-      "command": "npx",
-      "args": ["-y", "@adobe/express-developer-mcp@latest"]
-    },
-    "adobe-express-community": {
-      "command": "npx",
-      "args": ["-y", "community-express-dev-mcp"]
-    }
-  }
-}
-```
+- `--target copilot`
+- `--target cursor`
+- `--target windsurf`
+- `--target continue`
+- `--target claude`
+- `--target antigravity-global`
+- `--target antigravity-workspace --workspace <path>`
 
-**Community server recommended for Spectrum Web Components documentation access.**
+For details, see:
 
-### GitHub Copilot (VS Code)
+- `skills/adobe-express-core/references/mcp-setup-and-install.md`
 
-```bash
-mkdir -p ~/.copilot/skills
-cd ~/.copilot/skills
-git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
-```
+## MCP Compatibility
 
-**MCP Configuration** (`.vscode/mcp.json` in your workspace):
-```json
-{
-  "mcpServers": {
-    "adobe-express": {
-      "command": "npx",
-      "args": ["-y", "@adobe/express-developer-mcp@latest"]
-    },
-    "adobe-express-community": {
-      "command": "npx",
-      "args": ["-y", "community-express-dev-mcp"]
-    }
-  }
-}
-```
+Use both MCP servers:
 
-**Community server recommended for Spectrum Web Components documentation access.**
+- Official Adobe Express MCP for platform and SDK docs.
+- Community MCP for Spectrum UI docs.
 
-### Windsurf (Codeium)
+Core setup reference:
 
-```bash
-mkdir -p ~/.windsurf/skills
-cd ~/.windsurf/skills
-git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
-```
+- `skills/adobe-express-core/references/mcp-setup-and-install.md`
 
-**MCP Configuration** (in Windsurf settings):
-```json
-{
-  "mcpServers": {
-    "adobe-express": {
-      "command": "npx",
-      "args": ["-y", "@adobe/express-developer-mcp@latest"]
-    },
-    "adobe-express-community": {
-      "command": "npx",
-      "args": ["-y", "community-express-dev-mcp"]
-    }
-  }
-}
-```
+## Verification
 
-**Community server recommended for Spectrum Web Components documentation access.**
-
-### Claude Code (Anthropic)
-
-```bash
-# macOS
-mkdir -p ~/Library/Application\ Support/Claude/skills
-cd ~/Library/Application\ Support/Claude/skills
-git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
-```
-
-**MCP Configuration** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
-```json
-{
-  "mcpServers": {
-    "adobe-express": {
-      "command": "npx",
-      "args": ["-y", "@adobe/express-developer-mcp@latest"]
-    },
-    "adobe-express-community": {
-      "command": "npx",
-      "args": ["-y", "community-express-dev-mcp"]
-    }
-  }
-}
-```
-
-**Community server recommended for Spectrum Web Components documentation access.**
-
-### Continue.dev
-
-```bash
-mkdir -p ~/.continue/skills
-cd ~/.continue/skills
-git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
-```
-
-**MCP Configuration** (in Continue settings):
-```json
-{
-  "mcpServers": {
-    "adobe-express": {
-      "command": "npx",
-      "args": ["-y", "@adobe/express-developer-mcp@latest"]
-    },
-    "adobe-express-community": {
-      "command": "npx",
-      "args": ["-y", "community-express-dev-mcp"]
-    }
-  }
-}
-```
-
-**Community server recommended for Spectrum Web Components documentation access.**
-
-### Google Antigravity
-
-Google's browser-based IDE supports two skill installation modes:
-
-**Global Installation** (available in all workspaces):
-```bash
-mkdir -p ~/.gemini/antigravity/global_skills
-cd ~/.gemini/antigravity/global_skills
-git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
-```
-
-**Workspace-Specific Installation**:
-```bash
-cd <your-workspace-root>
-mkdir -p .agent/skills
-cd .agent/skills
-git clone https://github.com/YOUR_USERNAME/adobe-express-dev-skill.git adobe-express-dev
-```
-
-**MCP Configuration**:
-
-Antigravity supports MCP servers. Add to your Antigravity configuration:
-
-```json
-{
-  "mcpServers": {
-    "adobe-express": {
-      "command": "npx",
-      "args": ["-y", "@adobe/express-developer-mcp@latest"]
-    },
-    "adobe-express-community": {
-      "command": "npx",
-      "args": ["-y", "community-express-dev-mcp"]
-    }
-  }
-}
-```
-
-**Community server recommended for Spectrum Web Components documentation access.**
-
-**Note**: Antigravity uses the same Agent Skills specification. Skills are auto-discovered from both global and workspace-specific paths.
-
-## How to Verify Installation
-
-After installing, test the skill:
-
-1. **Open a new file** with Adobe Express-related code or create one
-2. **Ask your AI assistant**: "How do I create text in Adobe Express?"
-3. **Look for skill activation** - The assistant should reference:
-   - MCP server documentation
-   - OAuth patterns from the skill
-   - Code samples catalog
-
-## Troubleshooting by IDE
-
-### Cursor
-
-**Issue**: Skill not activating  
-**Solution**: 
-1. Ensure skill is in `~/.continue/skills/adobe-express-dev/`
-2. Check `SKILL.md` has proper YAML frontmatter
-3. Restart Cursor
-4. Try triggering with: "Using Adobe Express add-on skill, how do I..."
-
-### GitHub Copilot
-
-**Issue**: Skill not found  
-**Solution**:
-1. Verify path: `~/.copilot/skills/adobe-express-dev/`
-2. Check skill name in frontmatter matches folder name
-3. Reload VS Code window
-4. Enable verbose logging in Copilot settings
-
-### Windsurf
-
-**Issue**: MCP server not connecting  
-**Solution**:
-1. Check Node.js is installed: `node --version` (need 18+)
-2. Test MCP server manually: `npx -y @adobe/express-developer-mcp@latest`
-3. Verify Windsurf has permission to execute npx
-
-### Claude Code
-
-**Issue**: Skill not loading  
-**Solution**:
-1. Check path (macOS): `~/Library/Application Support/Claude/skills/`
-2. Verify `claude_desktop_config.json` syntax is valid JSON
-3. Restart Claude Desktop app
-4. Check logs in Claude settings
-
-## Platform-Specific Paths
-
-### macOS
-- Cursor: `~/.continue/skills/`
-- GitHub Copilot: `~/.copilot/skills/`
-- Windsurf: `~/.windsurf/skills/`
-- Claude: `~/Library/Application Support/Claude/skills/`
-
-### Windows
-- Cursor: `%USERPROFILE%\.continue\skills\`
-- GitHub Copilot: `%USERPROFILE%\.copilot\skills\`
-- Windsurf: `%USERPROFILE%\.windsurf\skills\`
-- Claude: `%APPDATA%\Claude\skills\`
-
-### Linux
-- Cursor: `~/.continue/skills/`
-- GitHub Copilot: `~/.copilot/skills/`
-- Windsurf: `~/.windsurf/skills/`
-- Claude: `~/.config/Claude/skills/`
+1. Run installer with `--dry-run` first.
+2. Run installer without `--dry-run` for target host.
+3. Confirm skill folders appear in host skill directory.
+4. Verify MCP servers are configured in host settings.
 
 ## MCP Server Requirements
 

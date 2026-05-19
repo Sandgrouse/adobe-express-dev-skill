@@ -1,0 +1,12 @@
+{
+  "name": "@sandgrouse/adobe-express-skills",
+  "version": "0.1.0",
+  "description": "Composite Adobe Express skill collection for AI coding assistants",
+  "license": "MIT",
+  "bin": {
+    "adobe-express-skills": "skills/adobe-express-core/scripts/install-skills.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
