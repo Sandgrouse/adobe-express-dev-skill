@@ -1,4 +1,4 @@
-# Adobe Express Composite Skills
+# Adobe Express Skills Collection
 
 Modular Adobe Express skill collection for AI coding assistants.
 
@@ -14,17 +14,13 @@ This repository is a composite of focused skills. It complements MCP servers ins
 
 From the repository root, you can install all skills at once or select specific skills.
 
-Primary command (published package):
-
-- `npx @sandgrouse/adobe-express-skills@latest install`
-
-Fallback command:
-
-- `npm install -g @sandgrouse/adobe-express-skills && adobe-express-skills install`
-
-Local repository command (top-level script):
+What works right now (local repository):
 
 - `node install-skills.mjs install`
+
+Dry-run example (recommended first):
+
+- `node install-skills.mjs install --target copilot --dry-run`
 
 Optional flags:
 
@@ -33,6 +29,16 @@ Optional flags:
 - `--destination <absolute-path>` to bypass target mapping
 - `--skills <csv>` to install selected skills only
 - `--dry-run` to preview changes
+
+Planned npm commands (only after package is published):
+
+- `npx @sandgrouse/adobe-express-skills@latest install`
+- `npm install -g @sandgrouse/adobe-express-skills && adobe-express-skills install`
+
+Current status:
+
+- `@sandgrouse/adobe-express-skills` is defined in `package.json` but is not yet published to npm.
+- Until publish, use the local `node install-skills.mjs install` command.
 
 Installer source:
 
