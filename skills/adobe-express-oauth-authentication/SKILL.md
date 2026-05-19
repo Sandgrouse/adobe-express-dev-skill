@@ -125,6 +125,5 @@ Pass to other skills when:
 
 ## References
 
-- [OAuth Implementation Guide](../../references/oauth-implementation.md)
 - [Official OAuth Docs](https://developer.adobe.com/express/add-ons/docs/guides/develop/oauth/)
-- [Code Samples](../../references/code-samples.md)
+
