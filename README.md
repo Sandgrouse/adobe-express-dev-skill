@@ -52,6 +52,7 @@ Core MCP setup guidance:
 ## Skills Directory
 
 - `skills/adobe-express-core`: runtime architecture, MCP routing, installation strategy.
+- `skills/adobe-express-cors-and-backend`: CORS diagnosis and backend policy across local, private, and public deployment stages.
 - `skills/adobe-express-spectrum-ui-ux`: Spectrum UI and UX patterns.
 - `skills/adobe-express-document-manipulation`: document sandbox operation planning.
 - `skills/adobe-express-oauth-authentication`: OAuth and token lifecycle.
@@ -78,10 +79,10 @@ Rule:
 
 ## Add a New Skill
 
-1. Add a folder under `skills/` with `SKILL.md` and `README.md`.
-2. Add cross-skill handoff notes in the new skill.
-3. Link the new folder in this README and in `skills/README.md`.
-4. If needed, add reusable materials under `references/`.
+1. Add a folder under `skills/` with `SKILL.md`.
+2. Add optional bundled resources only when needed: `references/`, `scripts/`, or `assets/`.
+3. Add cross-skill handoff notes in the new skill.
+4. Link the new folder in this README and in `skills/README.md`.
 
 ## Compatibility
 

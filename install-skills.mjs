@@ -7,6 +7,7 @@ const REPO_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname));
 const SKILLS_SOURCE = path.join(REPO_ROOT, "skills");
 const SKILL_FOLDERS = [
   "adobe-express-core",
+  "adobe-express-cors-and-backend",
   "adobe-express-spectrum-ui-ux",
   "adobe-express-document-manipulation",
   "adobe-express-oauth-authentication",
