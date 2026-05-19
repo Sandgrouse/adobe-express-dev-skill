@@ -3,7 +3,7 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 
-const REPO_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../../..");
+const REPO_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname));
 const SKILLS_SOURCE = path.join(REPO_ROOT, "skills");
 const SKILL_FOLDERS = [
   "adobe-express-core",
@@ -60,12 +60,14 @@ function printHelp() {
     "",
     "Usage:",
     "  adobe-express-skills install [--target <host>] [--destination <path>] [--skills <csv>] [--dry-run]",
+    "  node install-skills.mjs install [--target <host>] [--destination <path>] [--skills <csv>] [--dry-run]",
     "",
     "Targets:",
     "  copilot | cursor | windsurf | continue | claude | antigravity-global | antigravity-workspace",
     "",
     "Examples:",
     "  adobe-express-skills install --target copilot",
+    "  node install-skills.mjs install --target copilot",
     "  adobe-express-skills install --target antigravity-workspace --workspace /path/to/project",
     "  adobe-express-skills install --destination /tmp/skills --skills adobe-express-core,adobe-express-monetization"
   ];

@@ -12,7 +12,9 @@ This repository is a composite of focused skills. It complements MCP servers ins
 
 ## Install the Skill Collection
 
-Primary command:
+From the repository root, you can install all skills at once or select specific skills.
+
+Primary command (published package):
 
 - `npx @sandgrouse/adobe-express-skills@latest install`
 
@@ -20,9 +22,9 @@ Fallback command:
 
 - `npm install -g @sandgrouse/adobe-express-skills && adobe-express-skills install`
 
-Local repository fallback (before package publish):
+Local repository command (top-level script):
 
-- `node skills/adobe-express-core/scripts/install-skills.mjs install`
+- `node install-skills.mjs install`
 
 Optional flags:
 
@@ -34,7 +36,7 @@ Optional flags:
 
 Installer source:
 
-- `skills/adobe-express-core/scripts/install-skills.mjs`
+- `install-skills.mjs`
 
 ## MCP Servers
 

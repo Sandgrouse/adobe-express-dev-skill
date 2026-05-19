@@ -1,102 +1,174 @@
 ---
 name: adobe-express-core
-description: Adobe Express add-on architecture decisions, runtime boundaries, and composite skill installation. Use when planning add-on structure, deciding between iframe and document sandbox, routing MCP queries, managing manifest permissions, and installing the skill collection.
+description: Adobe Express environment essentials, two-runtime architecture, project setup, and MCP server configuration. Use when starting add-on development, understanding iframe vs sandbox boundaries, configuring MCP servers, setting up local projects, or validating manifest configuration.
 ---
 
 # Adobe Express Core Skill
 
-This skill helps you make foundational architecture decisions for Adobe Express add-ons, manage the composite skill collection, and route development tasks to appropriate specialized skills.
+This skill explains the Adobe Express development environment, the two-runtime architecture that makes it different from web development, and how to set up your development tools including the essential MCP servers.
 
 ## When to Use This Skill
 
-- Deciding whether a feature belongs in the iframe runtime or document sandbox
-- Planning manifest permissions and entry points
-- Querying official MCP for add-on platform APIs, SDK method signatures, and manifest requirements; querying community MCP only for Spectrum Web Components UI details
-- Installing the Adobe Express skills collection
-- Validating runtime architecture and cross-skill task handoffs
+- Starting your first Adobe Express add-on project
+- Understanding why the iframe and document sandbox runtimes are separate
+- Choosing your project setup path (Official Adobe CLI or Bolt Express)
+- Configuring the official Adobe Express MCP server
+- Planning runtime communication between UI and document manipulation
+- Validating manifest.json configuration
+- Routing tasks to specialized skills (Spectrum UI, document manipulation, OAuth, monetization)
 
-## Quick Start
+## MCP Server Setup (Required First Step)
 
-### Install the Skill Collection
+To enable AI-powered documentation, code completion, and manifest validation, you must connect your IDE to the official Adobe Express MCP server.
 
-```bash
-# Primary command (after npm package publish)
-npx @sandgrouse/adobe-express-skills@latest install
+**Agent instruction:** Run the setup script directly. Do not stop at instructions-only output.
 
-# Local repository fallback
-node skills/adobe-express-core/scripts/install-skills.mjs install
-```
+### Workflow
 
-Optional flags: `--target <host>`, `--skills <csv>`, `--dry-run`
+1. **Run the setup script:**  
+   In your project root, run:
+   ```bash
+   node skills/adobe-express-core/scripts/setup-mcp-servers.mjs --target <your-ide>
+   ```
+   Replace `<your-ide>` with one of: `copilot`, `cursor`, `windsurf`, `continue`, `claude`, `vscode`, `antigravity`, or `all` (for all supported IDEs).
 
-See `skills/adobe-express-core/references/mcp-setup-and-install.md` for details.
+   - The script will detect your IDE and update the correct MCP config file (e.g., `.copilot/mcp.json`, `.cursor/mcp.json`, etc.) with the official Adobe Express MCP server entry.
 
-### Troubleshooting Installation
+2. **Restart your IDE:**  
+   This ensures the MCP server connection is detected.
 
-If installation fails:
+3. **Verify connection:**  
+   - Look for an MCP status indicator in your IDE (if available).
+   - Ask your LLM: “List MCP tools” or “What is the Adobe Express MCP status?”
 
-1. Verify Node.js >= 18: `node --version`
-2. Check that destination folder exists or is creatable
-3. Confirm npm/yarn/bun is installed: `npm --version`
-4. Review installer flags: `node skills/adobe-express-core/scripts/install-skills.mjs --help`
-5. Run in `--dry-run` mode first to test: `--dry-run`
-6. Check filesystem permissions for destination path
+### Manual Setup (Advanced)
 
-For persistent issues, see `references/mcp-setup-and-install.md` for host-specific destination paths.
+If you prefer to configure your IDE manually, see [MCP Setup and Installation](references/mcp-setup-and-install.md) for step-by-step instructions on editing your IDE’s config files and adding the MCP server entry by hand.
 
-### Understand Two-Runtime Architecture
+### Available Scripts
 
-**Iframe Runtime**: UI code (HTML, CSS, JS), user interactions, OAuth flows, data imports/exports.
-**Document Sandbox**: Document manipulation (shapes, text, media), limited Web APIs for security.
+- **`skills/adobe-express-core/scripts/setup-mcp-servers.mjs`** — Automates MCP server configuration for all supported IDEs.
+- **`install-skills.mjs`** — Installs all skill folders (or selected skills) from the repository root into your host skill directory.
 
-**Communication**: Use Document Sandbox SDK (`runtime.exposeApi()`, `runtime.apiProxy()`) to bridge between runtimes.
+## Adobe Express Is Different from Web Development
 
-### MCP Routing Strategy
+Add-ons run inside Adobe Express as isolated panels with restrictions:
 
-**Use Official Adobe Express MCP for:**
-- Add-on platform APIs (e.g., `addOnUISdk`, document SDK methods)
-- SDK documentation and type signatures
-- Manifest structure and permission requirements
-- Runtime behavior and capabilities
+- **No direct DOM access to Express**: Your add-on cannot manipulate the main Express interface
+- **Two separate runtimes**: The UI (iframe) and document operations (sandbox) cannot directly call each other—they communicate via message passing
+- **Limited Web APIs in sandbox**: Security restriction—the document manipulation environment has minimal browser APIs available
+- **Manifest-driven architecture**: Every add-on requires a `manifest.json` file declaring permissions, entry points, and capabilities upfront
+- **Spectrum design system is mandatory**: All add-ons must follow Adobe's design language for consistency with the Express interface
 
-**Use Community MCP only for:**
-- Spectrum Web Components API details (sp-button, sp-textfield, etc.)
-- Component state, events, and accessibility patterns
-- Spectrum theming and styling
+This is not traditional web development. It's a highly controlled, security-first environment.
 
-If your query involves both add-on APIs and UI components, start with official MCP first, then ask community MCP for UI details.
+## Two-Runtime Architecture Explained
+
+The iframe and sandbox separation is the core concept:
+
+### Iframe Runtime (UI/Panel Layer)
+
+- **What it can do**: Full Web APIs (fetch, localStorage, WebSockets), user interactions, OAuth flows, external API calls, Client Storage
+- **What it cannot do**: Manipulate the document, access document structure, create shapes/text/media
+- **Purpose**: All UI, authentication, user input, external integrations
+
+### Document Sandbox (Document Manipulation Layer)
+
+- **What it can do**: Full Document API (create shapes, text, images, audio, video), access document tree, real-time rendering
+- **What it cannot do**: Use Web APIs (no fetch, no localStorage, no DOM), render UI, access iframe directly
+- **Purpose**: Document operations only
+
+### Communication Pattern
+
+The two runtimes communicate via Document Sandbox SDK using message passing. The iframe calls methods in the sandbox, and the sandbox calls methods back in the iframe. This message-based pattern ensures security and isolation.
+
+**For detailed examples and implementation patterns, see adobe-express-document-manipulation skill.**
+
+## Project Setup Options
+
+Two proven paths exist for setting up your first add-on project:
+
+### Official Adobe CLI (`@adobe/create-ccweb-add-on`)
+
+Official tool from Adobe with multiple templates to choose from:
+- JavaScript (vanilla), React, Vue, Svelte templates available
+- Full build pipeline and local dev server included
+- Official support and documentation
+
+See [Project Setup Guide](references/project-setup.md) for detailed instructions and template comparison.
+
+### Bolt Express (Community Tool)
+
+Community-built boilerplate with enhanced developer experience:
+- **Lightning-fast hot reloading** for rapid iteration
+- **TypeScript definitions** built-in for frontend, backend, and manifest
+- **Framework choice**: Svelte, React, or Vue
+- **Type-safe messaging** between UI and sandbox automatically
+- **GitHub Actions** ready for releases
+- MIT licensed, free and open source
+
+**Why consider Bolt Express?** If you want faster development cycles with hot reloading, built-in TypeScript support, and less configuration overhead, Bolt Express is worth evaluating.
+
+See [Project Setup Guide](references/project-setup.md) for Bolt Express quick start and feature comparison.
+
+## Project Structure: Three Essential Layers
+
+Every add-on has these three components:
+
+1. **manifest.json** — Declares the add-on's metadata and permissions
+   - Specifies OAuth providers, sandbox capabilities, entry points
+   - Generated automatically by both official CLI and Bolt Express
+   - Ask MCP for current manifest schema and best practices
+
+2. **Frontend UI** — User interface in your chosen framework
+   - React, Vue, Svelte, or vanilla JavaScript
+   - Must use Spectrum Web Components for consistency
+   - Handles user interactions and state
+   - See adobe-express-spectrum-ui-ux skill for UI guidance
+
+3. **Backend Code (Sandbox)** — Document manipulation layer
+   - Runs in isolated sandbox with Document API access
+   - Communicates with UI via message passing
+   - Only needed if your add-on modifies the document
+   - See adobe-express-document-manipulation skill for operations
 
 ## Skill Routing Guide
 
-Use this table to route tasks to the correct skill:
+Once you understand the architecture, route specific tasks to specialized skills:
 
 | Task Type | Route To | When |
 |-----------|----------|------|
-| Component selection, panel layout, UX patterns | adobe-express-spectrum-ui-ux | Designing UI or reviewing for UX issues |
+| UI components, panel layout, UX patterns | adobe-express-spectrum-ui-ux | Designing interfaces or reviewing UX |
 | Insert shapes, text, images, audio, video | adobe-express-document-manipulation | Creating or modifying document content |
-| OAuth login, token storage, provider setup | adobe-express-oauth-authentication | Connecting to cloud providers |
-| Subscriptions, checkout flows, entitlements | adobe-express-monetization | Monetizing features or managing billing |
-| Architecture validation, manifest, MCP routing | adobe-express-core (this skill) | Planning overall add-on structure |
+| OAuth login, token storage, cloud provider setup | adobe-express-oauth-authentication | Connecting to external services |
+| Subscriptions, checkout flows, entitlements | adobe-express-monetization | Monetizing features or billing |
+| Architecture decisions, manifest, MCP setup | adobe-express-core (this skill) | Planning overall add-on structure |
 
-If a task spans multiple domains (e.g., "add OAuth login button"), start with the primary skill above, then hand off to secondary skills as needed.
+## Common Architecture Questions
 
-## Common Tasks
+**Q: Does my add-on need a document sandbox?**
+A: Only if it creates or modifies document content (shapes, text, media). UI-only add-ons use iframe only.
 
-### Plan Add-on Architecture
+**Q: Why can't the UI code call document methods directly?**
+A: Security and stability. The sandbox is isolated to prevent malicious or buggy UI code from corrupting the document.
 
-1. Identify features that modify documents (document sandbox needed) vs UI-only features (iframe only)
-2. Check manifest requirements for feature scope
-3. Plan MCP queries: official for platform, community for UI
-4. Define entrypoints and permissions
+**Q: Where do I fetch data from APIs?**
+A: In the iframe (full Web API access). Pass data to the sandbox via message passing if needed for document operations.
 
-### Validate Manifest Permissions
-
-- Popup permissions needed? Check manifest `permissions.sandbox` for `allow-popups`
-- OAuth providers? List them in `permissions.oauth`
-- Document sandbox required? Include `documentSandbox` path
+**Q: How do I store user preferences?**
+A: Use Client Storage in iframe: Ask your MCP for current `clientStorage` API details.
 
 ## References
 
-- [MCP Setup and Installation](references/mcp-setup-and-install.md)
-- [Official Adobe Express Docs](https://developer.adobe.com/express/add-ons/docs/)
-- [Code Samples Catalog](../../references/code-samples.md)
+**Setup**:
+- [MCP Setup and Installation](references/mcp-setup-and-install.md) — Configure the official Adobe Express MCP (required first step)
+- [Project Setup Guide](references/project-setup.md) — Compare Adobe CLI vs Bolt Express, choose your path
+
+**External Resources**:
+- [Adobe Express Developer Docs](https://developer.adobe.com/express/add-ons/docs/)
+- [Manifest Schema Reference](https://developer.adobe.com/express/add-ons/docs/references/manifest/)
+- [Code Samples Repository](https://github.com/AdobeDocs/express-add-on-samples)
+- [Bolt Express GitHub](https://github.com/hyperbrew/bolt-express) (community tool)
+- [Bolt Express Discord Community](https://discord.gg/PC3EvvuRbc)
+
+**Next Steps**: Configure MCP → Choose project setup path → Use specialized skills for specific tasks

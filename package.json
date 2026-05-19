@@ -4,7 +4,7 @@
   "description": "Composite Adobe Express skill collection for AI coding assistants",
   "license": "MIT",
   "bin": {
-    "adobe-express-skills": "skills/adobe-express-core/scripts/install-skills.mjs"
+    "adobe-express-skills": "install-skills.mjs"
   },
   "engines": {
     "node": ">=18"
