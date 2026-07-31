@@ -2,8 +2,9 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const REPO_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname));
+const REPO_ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SKILLS_SOURCE = path.join(REPO_ROOT, "skills");
 const SKILL_FOLDERS = [
   "adobe-express-core",
