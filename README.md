@@ -15,13 +15,13 @@ Jump directly to installation examples and platform setups:
 - [Available Skills](#available-skills)
 - [Installation Quick Reference](#installation-quick-reference)
 - **Platform Copy-Paste Examples & Setup:**
-  - <img src="https://cdn.simpleicons.org/google" width="16" height="16" /> [Google Antigravity (Project-Scoped)](#antigravity-workspace)
-  - <img src="https://cdn.simpleicons.org/google" width="16" height="16" /> [Google Antigravity (Global)](#antigravity-global)
-  - <img src="https://cdn.simpleicons.org/githubcopilot" width="16" height="16" /> [GitHub Copilot](#copilot)
-  - <img src="https://cdn.simpleicons.org/cursor" width="16" height="16" /> [Cursor](#cursor)
-  - <img src="https://cdn.simpleicons.org/codeium" width="16" height="16" /> [Windsurf](#windsurf)
-  - <img src="https://cdn.simpleicons.org/continue" width="16" height="16" /> [Continue.dev](#continue)
-  - <img src="https://cdn.simpleicons.org/anthropic" width="16" height="16" /> [Claude](#claude)
+  - <img src="assets/logos/antigravity.png" width="16" height="16" /> [Google Antigravity (Project-Scoped)](#antigravity-workspace)
+  - <img src="assets/logos/antigravity.png" width="16" height="16" /> [Google Antigravity (Global)](#antigravity-global)
+  - <img src="assets/logos/copilot.jpeg" width="16" height="16" /> [GitHub Copilot](#copilot)
+  - <img src="assets/logos/cursor.jpeg" width="16" height="16" /> [Cursor](#cursor)
+  - <img src="assets/logos/windsurf.jpeg" width="16" height="16" /> [Windsurf](#windsurf)
+  - <img src="assets/logos/continue.svg" width="16" height="16" /> [Continue.dev](#continue)
+  - <img src="assets/logos/claude.jpeg" width="16" height="16" /> [Claude](#claude)
   - 📁 [Custom Destination Directory](#custom-destination)
 - [MCP Servers Integration](#mcp-servers-integration)
 - [Development & Adding New Skills](#development--adding-new-skills)
@@ -84,7 +84,7 @@ Select your AI platform below for target-specific copy-paste commands and target
 
 <a id="antigravity-workspace"></a>
 
-### 1. <img src="https://cdn.simpleicons.org/google" width="22" height="22" /> Google Antigravity (Workspace / Project-Scoped)
+### 1. <img src="assets/logos/antigravity.png" width="22" height="22" /> Google Antigravity (Project-Scoped)
 
 - **Target Identifier:** `antigravity-workspace`
 - **Destination Path:** `<workspace_path>/.agent/skills/`
@@ -118,7 +118,7 @@ node install-skills.mjs install --target antigravity-workspace --workspace "/Use
 
 <a id="antigravity-global"></a>
 
-### 2. <img src="https://cdn.simpleicons.org/google" width="22" height="22" /> Google Antigravity (Global Setup)
+### 2. <img src="assets/logos/antigravity.png" width="22" height="22" /> Google Antigravity (Global)
 
 - **Target Identifier:** `antigravity-global`
 - **Destination Path:** `~/.gemini/antigravity/global_skills/`
@@ -150,7 +150,7 @@ node install-skills.mjs install --target antigravity-global --dry-run
 
 <a id="copilot"></a>
 
-### 3. <img src="https://cdn.simpleicons.org/githubcopilot" width="22" height="22" /> GitHub Copilot
+### 3. <img src="assets/logos/copilot.jpeg" width="22" height="22" /> GitHub Copilot
 
 - **Target Identifier:** `copilot` *(Default target if `--target` is omitted)*
 - **Destination Path:** `~/.copilot/skills/`
@@ -182,7 +182,7 @@ node install-skills.mjs install --target copilot --dry-run
 
 <a id="cursor"></a>
 
-### 4. <img src="https://cdn.simpleicons.org/cursor" width="22" height="22" /> Cursor
+### 4. <img src="assets/logos/cursor.jpeg" width="22" height="22" /> Cursor
 
 - **Target Identifier:** `cursor`
 - **Destination Path:** `~/.cursor/skills/`
@@ -214,7 +214,7 @@ node install-skills.mjs install --target cursor --dry-run
 
 <a id="windsurf"></a>
 
-### 5. <img src="https://cdn.simpleicons.org/codeium" width="22" height="22" /> Windsurf
+### 5. <img src="assets/logos/windsurf.jpeg" width="22" height="22" /> Windsurf
 
 - **Target Identifier:** `windsurf`
 - **Destination Path:** `~/.windsurf/skills/`
@@ -246,7 +246,7 @@ node install-skills.mjs install --target windsurf --dry-run
 
 <a id="continue"></a>
 
-### 6. <img src="https://cdn.simpleicons.org/continue" width="22" height="22" /> Continue.dev
+### 6. <img src="assets/logos/continue.svg" width="22" height="22" /> Continue.dev
 
 - **Target Identifier:** `continue`
 - **Destination Path:** `~/.continue/skills/`
@@ -278,7 +278,7 @@ node install-skills.mjs install --target continue --dry-run
 
 <a id="claude"></a>
 
-### 7. <img src="https://cdn.simpleicons.org/anthropic" width="22" height="22" /> Claude (Desktop & Code)
+### 7. <img src="assets/logos/claude.jpeg" width="22" height="22" /> Claude
 
 - **Target Identifier:** `claude`
 - **Destination Path:** `~/Library/Application Support/Claude/skills/`
