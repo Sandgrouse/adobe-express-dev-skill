@@ -15,12 +15,14 @@ Jump directly to installation examples and platform setups:
 - [Available Skills](#available-skills)
 - [Installation Quick Reference](#installation-quick-reference)
 - **Platform Copy-Paste Examples & Setup:**
-  - <img src="assets/logos/antigravity.png" width="16" height="16" /> [Google Antigravity (Project-Scoped)](#antigravity-workspace)
-  - <img src="assets/logos/antigravity.png" width="16" height="16" /> [Google Antigravity (Global)](#antigravity-global)
+
   - <img src="assets/logos/copilot.jpeg" width="16" height="16" /> [GitHub Copilot](#copilot)
   - <img src="assets/logos/cursor.jpeg" width="16" height="16" /> [Cursor](#cursor)
-  - <img src="assets/logos/windsurf.jpeg" width="16" height="16" /> [Windsurf](#windsurf)
+
   - <img src="assets/logos/claude.jpeg" width="16" height="16" /> [Claude](#claude)
+  - <img src="assets/logos/antigravity.png" width="16" height="16" /> [Google Antigravity (Project-Scoped)](#antigravity-workspace)
+  - <img src="assets/logos/antigravity.png" width="16" height="16" /> [Google Antigravity (Global)](#antigravity-global)
+  - <img src="assets/logos/windsurf.jpeg" width="16" height="16" /> [Windsurf](#windsurf)
   - 📁 [Custom Destination Directory](#custom-destination)
   - ⚠️ <img src="assets/logos/continue.svg" width="16" height="16" /> [Continue.dev (Deprecated)](#continue)
 - [MCP Servers Integration](#mcp-servers-integration)
