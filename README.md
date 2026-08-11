@@ -20,10 +20,11 @@ Jump directly to installation examples and platform setups:
   - <img src="assets/logos/copilot.jpeg" width="16" height="16" /> [GitHub Copilot](#copilot)
   - <img src="assets/logos/cursor.jpeg" width="16" height="16" /> [Cursor](#cursor)
   - <img src="assets/logos/windsurf.jpeg" width="16" height="16" /> [Windsurf](#windsurf)
-  - <img src="assets/logos/continue.svg" width="16" height="16" /> [Continue.dev](#continue)
   - <img src="assets/logos/claude.jpeg" width="16" height="16" /> [Claude](#claude)
   - 📁 [Custom Destination Directory](#custom-destination)
+  - ⚠️ <img src="assets/logos/continue.svg" width="16" height="16" /> [Continue.dev (Deprecated)](#continue)
 - [MCP Servers Integration](#mcp-servers-integration)
+- 📋 [TODOs & Roadmap](#todos-and-roadmap)
 - [Development & Adding New Skills](#development--adding-new-skills)
 
 ---
@@ -65,7 +66,7 @@ node install-skills.mjs install [flags]
 
 | Flag | Argument | Description | Example |
 | :--- | :--- | :--- | :--- |
-| `--target` | `<host>` | Host environment (`antigravity-workspace`, `antigravity-global`, `copilot`, `cursor`, `windsurf`, `continue`, `claude`) | `--target antigravity-workspace` |
+| `--target` | `<host>` | Host environment (`antigravity-workspace`, `antigravity-global`, `copilot`, `cursor`, `windsurf`, `claude`, `continue`) | `--target antigravity-workspace` |
 | `--workspace` | `<path>` | **Required** when using `--target antigravity-workspace`. Base path to project. | `--workspace "/Users/YOUR_USERNAME/Documents/my-express-addon"` |
 | `--destination` | `<path>` | Absolute destination path (bypasses `--target` mapping). | `--destination "/Users/YOUR_USERNAME/Documents/custom-skills"` |
 | `--skills` | `<csv>` | Comma-separated list of specific skills to install. | `--skills adobe-express-core,adobe-express-spectrum-ui-ux` |
@@ -244,41 +245,9 @@ node install-skills.mjs install --target windsurf --dry-run
 
 ---
 
-<a id="continue"></a>
-
-### 6. <img src="assets/logos/continue.svg" width="22" height="22" /> Continue.dev
-
-- **Target Identifier:** `continue`
-- **Destination Path:** `~/.continue/skills/`
-- **Description:** Installs skills into Continue.dev skill storage.
-
-#### Copy-Paste Examples
-
-##### A. Install ALL Skills
-
-```bash
-node install-skills.mjs install --target continue
-```
-
-##### B. Selective Skill Install
-
-```bash
-node install-skills.mjs install --target continue --skills adobe-express-core,adobe-express-oauth-authentication
-```
-
-##### C. Dry-Run Preview
-
-```bash
-node install-skills.mjs install --target continue --dry-run
-```
-
-[⬆ Back to Quick Navigation](#quick-navigation)
-
----
-
 <a id="claude"></a>
 
-### 7. <img src="assets/logos/claude.jpeg" width="22" height="22" /> Claude
+### 6. <img src="assets/logos/claude.jpeg" width="22" height="22" /> Claude
 
 - **Target Identifier:** `claude`
 - **Destination Path:** `~/Library/Application Support/Claude/skills/`
@@ -310,7 +279,7 @@ node install-skills.mjs install --target claude --dry-run
 
 <a id="custom-destination"></a>
 
-### 8. 📁 Custom Destination Directory
+### 7. 📁 Custom Destination Directory
 
 - **Flag Used:** `--destination <absolute-path>`
 - **Description:** Installs skills directly into any folder of your choice, overriding default host target mapping.
@@ -339,6 +308,41 @@ node install-skills.mjs install --destination "/Users/YOUR_USERNAME/Documents/my
 
 ---
 
+<a id="continue"></a>
+
+### 8. <img src="assets/logos/continue.svg" width="22" height="22" /> Continue.dev *(Deprecated)*
+
+> [!WARNING]
+> **Deprecation Notice:** Continue.dev support is deprecated and scheduled for removal from `install-skills.mjs` in a future release.
+
+- **Target Identifier:** `continue`
+- **Destination Path:** `~/.continue/skills/`
+- **Description:** Installs skills into Continue.dev skill storage.
+
+#### Copy-Paste Examples
+
+##### A. Install ALL Skills
+
+```bash
+node install-skills.mjs install --target continue
+```
+
+##### B. Selective Skill Install
+
+```bash
+node install-skills.mjs install --target continue --skills adobe-express-core,adobe-express-oauth-authentication
+```
+
+##### C. Dry-Run Preview
+
+```bash
+node install-skills.mjs install --target continue --dry-run
+```
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
 <a id="mcp-servers-integration"></a>
 
 ## MCP Servers Integration
@@ -350,6 +354,17 @@ Skills complement MCP servers for full IDE capabilities. Use both servers:
 2. **Community Spectrum MCP Server:** Component schemas, Spectrum Web Components guidelines, and UI patterns.
 
 Detailed MCP setup guide: [skills/adobe-express-core/references/mcp-setup-and-install.md](skills/adobe-express-core/references/mcp-setup-and-install.md)
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="todos-and-roadmap"></a>
+
+## 📋 TODOs & Roadmap
+
+- [ ] **Deprecate Continue.dev Target:** Remove `continue` target mapping (`~/.continue/skills`) and CLI flags from `install-skills.mjs`.
+- [ ] **Clean Up References:** Remove Continue.dev setup documentation and references across all modular skill documentation once deprecated.
 
 [⬆ Back to Quick Navigation](#quick-navigation)
 
