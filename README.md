@@ -2,156 +2,389 @@
 
 Modular Adobe Express skill collection for AI coding assistants.
 
-This repository is a composite of focused skills.
-It complements MCP servers instead of duplicating platform documentation.
+This repository provides modular, task-focused workflow orchestration, guardrails, and implementation patterns for Adobe Express add-on development. It works alongside official and community MCP servers to give AI assistants accurate context and step-by-step guidance.
 
-## Why This Exists
+---
 
-- MCP is excellent at retrieving current documentation.
-- Skills are excellent at workflow orchestration, guardrails, and task routing.
-- This collection separates concerns so each skill is shorter,
-  clearer, and easier to evaluate.
+<a id="quick-navigation"></a>
 
-## Install the Skill Collection
+## 📍 Quick Navigation
 
-From the repository root, you can install all skills at once
-or select specific skills.
+Jump directly to installation examples and platform setups:
 
-What works right now (local repository):
+- [Available Skills](#available-skills)
+- [Installation Quick Reference](#installation-quick-reference)
+- **Platform Copy-Paste Examples & Setup:**
+  - <img src="https://cdn.simpleicons.org/google" width="16" height="16" /> [Google Antigravity (Project-Scoped)](#antigravity-workspace)
+  - <img src="https://cdn.simpleicons.org/google" width="16" height="16" /> [Google Antigravity (Global)](#antigravity-global)
+  - <img src="https://cdn.simpleicons.org/githubcopilot" width="16" height="16" /> [GitHub Copilot](#copilot)
+  - <img src="https://cdn.simpleicons.org/cursor" width="16" height="16" /> [Cursor](#cursor)
+  - <img src="https://cdn.simpleicons.org/codeium" width="16" height="16" /> [Windsurf](#windsurf)
+  - <img src="https://cdn.simpleicons.org/continue" width="16" height="16" /> [Continue.dev](#continue)
+  - <img src="https://cdn.simpleicons.org/anthropic" width="16" height="16" /> [Claude](#claude)
+  - 📁 [Custom Destination Directory](#custom-destination)
+- [MCP Servers Integration](#mcp-servers-integration)
+- [Development & Adding New Skills](#development--adding-new-skills)
 
-- `node install-skills.mjs install`
+---
 
-Dry-run example (recommended first):
+<a id="available-skills"></a>
 
-- `node install-skills.mjs install --target copilot --dry-run`
+## Available Skills
 
-Optional flags:
+Use these exact folder names when installing a subset of skills via the `--skills` flag:
 
-- `--target <host>` where host is one of `copilot`, `cursor`, `windsurf`,
-  `continue`, `claude`, `antigravity-global`, `antigravity-workspace`
-- `--workspace <path>` required only for `antigravity-workspace`
-- `--destination <absolute-path>` to bypass target mapping
-- `--skills <csv>` to install selected skills only
-- `--dry-run` to preview changes
+| Skill Directory | Description |
+| :--- | :--- |
+| `adobe-express-core` | Runtime architecture (iframe vs sandbox), MCP setup, project initialization, and manifest config. |
+| `adobe-express-cors-and-backend` | CORS error diagnosis, preflight checks, backend origin policies, and network call scoping. |
+| `adobe-express-spectrum-ui-ux` | Spectrum UI/UX component selection (SWC, React Spectrum), theme setup, and layout design. |
+| `adobe-express-document-manipulation` | Express Document SDK operations, shape/text/media insertion, and sandbox command execution. |
+| `adobe-express-oauth-authentication` | OAuth 2.0 flows, token storage, credential management, and cloud service integration. |
+| `adobe-express-monetization` | Subscription tier design, checkout integration, webhook verification, and entitlement checks. |
 
-Planned npm commands (only after package is published):
+[⬆ Back to Quick Navigation](#quick-navigation)
 
-- `npx @sandgrouse/adobe-express-skills@latest install`
-- `npm install -g @sandgrouse/adobe-express-skills &&`
-  `adobe-express-skills install`
+---
 
-Current status:
+<a id="installation-quick-reference"></a>
 
-- `@sandgrouse/adobe-express-skills` is defined in `package.json`
-  but is not yet published to npm.
-- Until publish, use the local `node install-skills.mjs install` command.
+## Installation Quick Reference
 
-Installer source:
+### Command Syntax
 
-- `install-skills.mjs`
+Until the package is published to npm, run commands using the local script from the repository root:
 
-## MCP Servers
+```bash
+node install-skills.mjs install [flags]
+```
 
-Use both servers for best results:
+*(Once published to npm, you will also be able to run `npx @sandgrouse/adobe-express-skills@latest install [flags]`)*
 
-- Official Adobe MCP: Adobe Express platform and SDK documentation.
-- Community MCP: Spectrum component and UI documentation.
+### Available Installer Flags
 
-Core MCP setup guidance:
+| Flag | Argument | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `--target` | `<host>` | Host environment (`antigravity-workspace`, `antigravity-global`, `copilot`, `cursor`, `windsurf`, `continue`, `claude`) | `--target antigravity-workspace` |
+| `--workspace` | `<path>` | **Required** when using `--target antigravity-workspace`. Base path to project. | `--workspace "/Users/YOUR_USERNAME/Documents/my-express-addon"` |
+| `--destination` | `<path>` | Absolute destination path (bypasses `--target` mapping). | `--destination "/Users/YOUR_USERNAME/Documents/custom-skills"` |
+| `--skills` | `<csv>` | Comma-separated list of specific skills to install. | `--skills adobe-express-core,adobe-express-spectrum-ui-ux` |
+| `--dry-run` | *(none)* | Preview file actions without writing to disk. | `--dry-run` |
+| `--help` | *(none)* | Print installer help message. | `--help` |
 
-- `skills/adobe-express-core/references/mcp-setup-and-install.md`
+[⬆ Back to Quick Navigation](#quick-navigation)
 
-## Skills Directory
+---
 
-- `skills/adobe-express-core`: runtime architecture, MCP routing,
-  installation strategy.
-- `skills/adobe-express-cors-and-backend`: CORS diagnosis and backend policy
-  across local, private, and public deployment stages.
-- `skills/adobe-express-spectrum-ui-ux`: Spectrum UI and UX patterns.
-- `skills/adobe-express-document-manipulation`: document sandbox
-  operation planning.
-- `skills/adobe-express-oauth-authentication`: OAuth and token lifecycle.
-- `skills/adobe-express-monetization`: checkout, webhook,
-  entitlement architecture.
+## Host-Specific Setup & Copy-Paste Code Examples
 
-Directory index:
+Select your AI platform below for target-specific copy-paste commands and target destination details.
 
-- `skills/README.md`
+---
 
-## Shared References
+<a id="antigravity-workspace"></a>
 
-- `references/code-samples.md`
-- `references/oauth-implementation.md`
-- `references/README.md`
+### 1. <img src="https://cdn.simpleicons.org/google" width="22" height="22" /> Google Antigravity (Workspace / Project-Scoped)
 
-Rule:
+- **Target Identifier:** `antigravity-workspace`
+- **Destination Path:** `<workspace_path>/.agent/skills/`
+- **Description:** Installs skills directly into your specific local project directory. Required flag: `--workspace <path>`.
 
-- Skill docs should link to references and official Adobe docs
-  instead of embedding long implementation code blocks.
+#### Copy-Paste Examples
 
-## Monolith Migration Note
+##### A. Install ALL Skills to Your Workspace
 
-- The old top-level monolithic `SKILL.md` is being replaced by modular skills
-  in `skills/`.
-- Consumers should reference individual skill folders directly.
+```bash
+node install-skills.mjs install --target antigravity-workspace --workspace "/Users/YOUR_USERNAME/Documents/my-express-addon"
+```
 
-## Add a New Skill
+*(npm version once published: `npx @sandgrouse/adobe-express-skills@latest install --target antigravity-workspace --workspace "/Users/YOUR_USERNAME/Documents/my-express-addon"`)*
 
-1. Add a folder under `skills/` with `SKILL.md`.
-2. Add optional bundled resources only when needed:
-   `references/`, `scripts/`, or `assets/`.
-3. Add cross-skill handoff notes in the new skill.
-4. Link the new folder in this README and in `skills/README.md`.
+##### B. Selective Skill Install (e.g. Core & UI/UX only)
 
-## Compatibility
+```bash
+node install-skills.mjs install --target antigravity-workspace --workspace "/Users/YOUR_USERNAME/Documents/my-express-addon" --skills adobe-express-core,adobe-express-spectrum-ui-ux
+```
 
-Works with skill-capable hosts including GitHub Copilot, Cursor, Windsurf,
-Continue, Claude Desktop, and Google Antigravity setups.
+##### C. Dry-Run Preview (No files written)
 
-Contributions welcome!
-If you have improvements, additional patterns, or updated samples:
+```bash
+node install-skills.mjs install --target antigravity-workspace --workspace "/Users/YOUR_USERNAME/Documents/my-express-addon" --dry-run
+```
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+[⬆ Back to Quick Navigation](#quick-navigation)
 
-Please ensure:
+---
 
-- No duplication of full sample code (link instead)
-- Patterns are production-tested
-- Documentation is clear and concise
+<a id="antigravity-global"></a>
 
-<!-- markdownlint-disable MD013 -->
+### 2. <img src="https://cdn.simpleicons.org/google" width="22" height="22" /> Google Antigravity (Global Setup)
+
+- **Target Identifier:** `antigravity-global`
+- **Destination Path:** `~/.gemini/antigravity/global_skills/`
+- **Description:** Installs skills globally so they are available across all Antigravity workspace projects.
+
+#### Copy-Paste Examples
+
+##### A. Install ALL Skills Globally
+
+```bash
+node install-skills.mjs install --target antigravity-global
+```
+
+##### B. Selective Skill Install (e.g. Document Manipulation & OAuth)
+
+```bash
+node install-skills.mjs install --target antigravity-global --skills adobe-express-document-manipulation,adobe-express-oauth-authentication
+```
+
+##### C. Dry-Run Preview
+
+```bash
+node install-skills.mjs install --target antigravity-global --dry-run
+```
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="copilot"></a>
+
+### 3. <img src="https://cdn.simpleicons.org/githubcopilot" width="22" height="22" /> GitHub Copilot
+
+- **Target Identifier:** `copilot` *(Default target if `--target` is omitted)*
+- **Destination Path:** `~/.copilot/skills/`
+- **Description:** Installs skills into GitHub Copilot's user skill folder.
+
+#### Copy-Paste Examples
+
+##### A. Install ALL Skills
+
+```bash
+node install-skills.mjs install --target copilot
+```
+
+##### B. Selective Skill Install
+
+```bash
+node install-skills.mjs install --target copilot --skills adobe-express-core,adobe-express-cors-and-backend
+```
+
+##### C. Dry-Run Preview
+
+```bash
+node install-skills.mjs install --target copilot --dry-run
+```
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="cursor"></a>
+
+### 4. <img src="https://cdn.simpleicons.org/cursor" width="22" height="22" /> Cursor
+
+- **Target Identifier:** `cursor`
+- **Destination Path:** `~/.cursor/skills/`
+- **Description:** Installs skills into Cursor's central skill directory.
+
+#### Copy-Paste Examples
+
+##### A. Install ALL Skills
+
+```bash
+node install-skills.mjs install --target cursor
+```
+
+##### B. Selective Skill Install
+
+```bash
+node install-skills.mjs install --target cursor --skills adobe-express-core,adobe-express-monetization
+```
+
+##### C. Dry-Run Preview
+
+```bash
+node install-skills.mjs install --target cursor --dry-run
+```
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="windsurf"></a>
+
+### 5. <img src="https://cdn.simpleicons.org/codeium" width="22" height="22" /> Windsurf
+
+- **Target Identifier:** `windsurf`
+- **Destination Path:** `~/.windsurf/skills/`
+- **Description:** Installs skills into Windsurf IDE skill storage.
+
+#### Copy-Paste Examples
+
+##### A. Install ALL Skills
+
+```bash
+node install-skills.mjs install --target windsurf
+```
+
+##### B. Selective Skill Install
+
+```bash
+node install-skills.mjs install --target windsurf --skills adobe-express-core,adobe-express-spectrum-ui-ux
+```
+
+##### C. Dry-Run Preview
+
+```bash
+node install-skills.mjs install --target windsurf --dry-run
+```
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="continue"></a>
+
+### 6. <img src="https://cdn.simpleicons.org/continue" width="22" height="22" /> Continue.dev
+
+- **Target Identifier:** `continue`
+- **Destination Path:** `~/.continue/skills/`
+- **Description:** Installs skills into Continue.dev skill storage.
+
+#### Copy-Paste Examples
+
+##### A. Install ALL Skills
+
+```bash
+node install-skills.mjs install --target continue
+```
+
+##### B. Selective Skill Install
+
+```bash
+node install-skills.mjs install --target continue --skills adobe-express-core,adobe-express-oauth-authentication
+```
+
+##### C. Dry-Run Preview
+
+```bash
+node install-skills.mjs install --target continue --dry-run
+```
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="claude"></a>
+
+### 7. <img src="https://cdn.simpleicons.org/anthropic" width="22" height="22" /> Claude (Desktop & Code)
+
+- **Target Identifier:** `claude`
+- **Destination Path:** `~/Library/Application Support/Claude/skills/`
+- **Description:** Installs skills into Claude's local desktop application storage.
+
+#### Copy-Paste Examples
+
+##### A. Install ALL Skills
+
+```bash
+node install-skills.mjs install --target claude
+```
+
+##### B. Selective Skill Install
+
+```bash
+node install-skills.mjs install --target claude --skills adobe-express-core,adobe-express-document-manipulation
+```
+
+##### C. Dry-Run Preview
+
+```bash
+node install-skills.mjs install --target claude --dry-run
+```
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="custom-destination"></a>
+
+### 8. 📁 Custom Destination Directory
+
+- **Flag Used:** `--destination <absolute-path>`
+- **Description:** Installs skills directly into any folder of your choice, overriding default host target mapping.
+
+#### Copy-Paste Examples
+
+##### A. Install ALL Skills to Custom Path
+
+```bash
+node install-skills.mjs install --destination "/Users/YOUR_USERNAME/Documents/my-custom-skills-folder"
+```
+
+##### B. Selective Skill Install to Custom Path
+
+```bash
+node install-skills.mjs install --destination "/Users/YOUR_USERNAME/Documents/my-custom-skills-folder" --skills adobe-express-core,adobe-express-spectrum-ui-ux
+```
+
+##### C. Custom Path Dry-Run Preview
+
+```bash
+node install-skills.mjs install --destination "/Users/YOUR_USERNAME/Documents/my-custom-skills-folder" --dry-run
+```
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="mcp-servers-integration"></a>
+
+## MCP Servers Integration
+
+Skills complement MCP servers for full IDE capabilities. Use both servers:
+
+1. **Official Adobe Express MCP Server:** Provides official API definitions, SDK contracts, and reference docs.
+   - Package: `@adobe/express-developer-mcp@latest`
+2. **Community Spectrum MCP Server:** Component schemas, Spectrum Web Components guidelines, and UI patterns.
+
+Detailed MCP setup guide: [skills/adobe-express-core/references/mcp-setup-and-install.md](skills/adobe-express-core/references/mcp-setup-and-install.md)
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
+<a id="development--adding-new-skills"></a>
+
+## Development & Adding New Skills
+
+To add a new skill to this collection:
+
+1. Create a directory under `skills/` containing a `SKILL.md` file.
+2. Structure the skill with frontmatter (`name` and `description`).
+3. Add optional supporting directories if required: `references/`, `scripts/`, or `assets/`.
+4. Register the new folder name in `install-skills.mjs` (`SKILL_FOLDERS` array).
+5. Update [Available Skills](#available-skills) in this README and in [skills/README.md](skills/README.md).
+
+[⬆ Back to Quick Navigation](#quick-navigation)
+
+---
+
 ## Related Resources
 
-- [Adobe Express Add-ons](https://developer.adobe.com/express/add-ons/)
-- [Official Samples](https://github.com/AdobeDocs/express-add-on-samples)
-- [OAuthUtils.js](https://github.com/AdobeDocs/express-add-on-samples/blob/main/samples/import-images-using-oauth/src/utils/OAuthUtils.js)
-- [Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/)
-- [Adobe Express MCP Server](https://www.npmjs.com/package/@adobe/express-developer-mcp@latest)
-<!-- markdownlint-enable MD013 -->
+- [Adobe Express Add-ons Developer Docs](https://developer.adobe.com/express/add-ons/)
+- [Official Adobe Express Add-on Samples Repository](https://github.com/AdobeDocs/express-add-on-samples)
+- [Spectrum Web Components Documentation](https://opensource.adobe.com/spectrum-web-components/)
+- [Adobe Express Developer MCP Server](https://www.npmjs.com/package/@adobe/express-developer-mcp)
+
+---
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ## Author
 
 **Geoffrey Nwachukwu**  
 Created for the Adobe Express developer community.
-
-## Acknowledgments
-
-- Adobe Express team for the excellent documentation and MCP server
-- Adobe Express add-on samples repository contributors
-- Anthropic for creating the Agent Skills specification
-- Agent Skills community (Cursor, GitHub Copilot, Windsurf, Claude,
-  Continue.dev, Google Antigravity users)
-
----
-
-Made with love for Adobe Express developers.
-
-If this skill helps you, please ⭐ star the repository
-and share with other developers.
