@@ -18,7 +18,6 @@ Jump directly to installation examples and platform setups:
 
   - <img src="assets/logos/copilot.jpeg" width="16" height="16" /> [GitHub Copilot](#copilot)
   - <img src="assets/logos/cursor.jpeg" width="16" height="16" /> [Cursor](#cursor)
-
   - <img src="assets/logos/claude.jpeg" width="16" height="16" /> [Claude](#claude)
   - <img src="assets/logos/antigravity.png" width="16" height="16" /> [Antigravity (Workspace-Scoped)](#antigravity-workspace)
   - <img src="assets/logos/antigravity.png" width="16" height="16" /> [Antigravity (Global)](#antigravity-global)
